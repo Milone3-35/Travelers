@@ -6,8 +6,4 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PhpTui\\Tui\\' => array($vendorDir . '/php-tui/php-tui/src'),
-    'PhpTui\\Term\\' => array($vendorDir . '/php-tui/term/src'),
-    'PhpTui\\Cassowary\\' => array($vendorDir . '/php-tui/cassowary/src'),
-    'PhpTui\\BDF\\' => array($vendorDir . '/php-tui/php-tui/lib/bdf/src'),
 );

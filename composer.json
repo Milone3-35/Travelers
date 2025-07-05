@@ -8,8 +8,5 @@
             "name": "Milone3-35",
             "email": "milo.koch123@gmail.com"
         }
-    ],
-    "require": {
-        "php-tui/php-tui": "^0.2.1"
-    }
+    ]
 }
