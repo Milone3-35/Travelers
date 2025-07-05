@@ -1,0 +1,13 @@
+{
+    "name": "milo/travelers",
+    "description": "A terminal based adventure game written in php",
+    "type": "project",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Milone3-35",
+            "email": "milo.koch123@gmail.com"
+        }
+    ],
+    "require": {}
+}
