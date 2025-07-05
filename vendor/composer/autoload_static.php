@@ -6,6 +6,35 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitba1f96199b77b298d7c40f138e745b76
 {
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'PhpTui\\Tui\\' => 11,
+            'PhpTui\\Term\\' => 12,
+            'PhpTui\\Cassowary\\' => 17,
+            'PhpTui\\BDF\\' => 11,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'PhpTui\\Tui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-tui/php-tui/src',
+        ),
+        'PhpTui\\Term\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-tui/term/src',
+        ),
+        'PhpTui\\Cassowary\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-tui/cassowary/src',
+        ),
+        'PhpTui\\BDF\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-tui/php-tui/lib/bdf/src',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -13,6 +42,8 @@ class ComposerStaticInitba1f96199b77b298d7c40f138e745b76
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitba1f96199b77b298d7c40f138e745b76::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitba1f96199b77b298d7c40f138e745b76::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitba1f96199b77b298d7c40f138e745b76::$classMap;
 
         }, null, ClassLoader::class);

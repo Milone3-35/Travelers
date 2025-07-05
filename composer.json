@@ -9,5 +9,7 @@
             "email": "milo.koch123@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php-tui/php-tui": "^0.2.1"
+    }
 }
