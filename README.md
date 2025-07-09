@@ -1,9 +1,11 @@
-# Terminal Box Game
+#Travelers
 
-Ein Terminal Spiel in dem du eine lange Reise begehst.
+A terminal based game written mainly in PHP and C.
 
-## Lizenz
+##PHP
 
-Dieses Spiel steht unter der [CC BY-NC 4.0 Lizenz](https://creativecommons.org/licenses/by-nc/4.0/).  
-Du darfst es nutzen, verändern und weitergeben – **aber nicht verkaufen** oder unter deinem eigenen Namen veröffentlichen.
+As I said everything is written in PHP except a few things (see below).
+###C
+The on thing written in C is the function readKey because with PHP I had performance issues
+on Windows because there isn't really a way to read one single input like there is on Linux/Macos.
 
