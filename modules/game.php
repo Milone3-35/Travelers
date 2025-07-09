@@ -24,7 +24,8 @@ class Player {
     }
 
 }
-function anfänge() {
+
+function spielerErstellen() {
 
     drawFrame();
     drawCharakterErstellungTitel(); echo "\033[0m";
@@ -36,7 +37,7 @@ function anfänge() {
     $name = readline();
     echo "\033[?25l";
 
-    while (true) {
+        while (true) {
 
         $spielerArray = [];
 
@@ -106,12 +107,18 @@ function anfänge() {
         $spielerArray["rolle"],
         $spielerArray["herkunft"],
         $name,
+        
         $spielerArray["waffe"],
         $hp[$rolle],
         $verteidigung[$rolle],
         $stärke[$rolle]
 
     );
+
+}
+function anfänge() {
+
+    spielerErstellen();
 
 }
 
