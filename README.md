@@ -1,6 +1,6 @@
 # Terminal Box Game
 
-Ein einfaches Terminal-Spiel in PHP, bei dem ein Rahmen auf der Konsole gezeichnet wird. Steuere das Spiel mit der Tastatur!
+Ein Terminal Spiel in dem du eine lange Reise begehst.
 
 ## Lizenz
 
