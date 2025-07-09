@@ -59,7 +59,8 @@ function select(string $prompt = "Was willst du tun?",array $options, int $reihe
                 if ($position < count($options) - 1) $position++;
                 drawMenu($prompt, $options, $reihe, $spalte, $position);
                 continue 2;
-
+            
+            case "Spacebar":
             case "Enter":
                 return $options[$position];
 
