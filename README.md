@@ -12,3 +12,7 @@ on Windows because there isn't really a way to read one single input like there 
 ## Operating System
 
 Right now the game is Windows only but in future it might also be on Linux/Mac.
+
+## Language
+
+Right now the game is in German but in the future it is likely that the game will also be avaiable in English.
