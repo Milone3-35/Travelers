@@ -37,5 +37,4 @@ switch ($startMenu) {
 
 }
 
-echo "\033[0m";
 ?>

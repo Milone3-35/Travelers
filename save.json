@@ -1,0 +1,14 @@
+{
+    "haarfarbe": "Braun",
+    "rolle": "Krieger",
+    "herkunft": "Elfenwald",
+    "name": "",
+    "waffe": "Kurzschwert",
+    "leben": 30,
+    "verteidigung": 10,
+    "st\u00e4rke": 5,
+    "raum": "Schlafzimmer vom Spieler",
+    "ort": "Haus vom Spieler",
+    "level": 1,
+    "geld": 100
+}

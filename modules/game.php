@@ -115,17 +115,66 @@ function spielerErstellen() {
 
     );
 
+    $daten = [
+
+        "haarfarbe" => $spieler->haarfarbe,
+        "rolle" => $spieler->rolle,
+        "herkunft" => $spieler->herkunft,
+        "name" => $spieler->name,
+
+        "waffe" => $spieler->waffe,
+        "leben" => $spieler->leben,
+        "verteidigung" => $spieler->verteidigung,
+        "stärke" => $spieler->stärke,
+
+        "raum" => "Schlafzimmer vom Spieler",
+        "ort" => "Haus vom Spieler",
+        "level" => 1,
+        "geld" => 100,
+
+    ];
+
+    file_put_contents("save.json", json_encode($daten, JSON_PRETTY_PRINT));
+
 }
 function anfänge() {
 
     spielerErstellen();
+    echo "\033[2J";
+    drawFrame();
+
+    echo "\033[38;5;241m";
+    drawBox(45, 8, 10, 25);
+    echo "\033[0m";
+
+    $json = file_get_contents("save.json");
+    $daten = json_decode($json, true); 
+
+    echo "\033[12;27HAktueller Ort\033[35m:\033[0m {$daten["ort"]}";
+    echo "\033[13;27HAktueller Raum\033[35m:\033[0m {$daten["raum"]}";
+    echo "\033[14;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[15;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
+    echo "\033[16;27HGeld\033[35m:\033[0m {$daten["geld"]}";
 
 }
 
 function fortsetzen() {
 
     echo "\033[2J";
-    echo "\033[33;114HWird geladen...";
+    drawFrame();
+    
+    echo "\033[38;5;241m";
+    drawBox(45, 8, 10, 25);
+    echo "\033[0m";
+
+    $json = file_get_contents("save.json");
+    $daten = json_decode($json, true); 
+
+    echo "\033[12;27HAktueller Ort\033[35m:\033[0m {$daten["ort"]}";
+    echo "\033[13;27HAktueller Raum\033[35m:\033[0m {$daten["raum"]}";
+    echo "\033[14;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[15;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
+    echo "\033[16;27HGeld\033[35m:\033[0m {$daten["geld"]}";
     
 }
 
