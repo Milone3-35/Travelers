@@ -131,6 +131,7 @@ function spielerErstellen() {
         "ort" => "Haus vom Spieler",
         "level" => 1,
         "geld" => 100,
+        "mission" => "Geh ins Badezimmer"
 
     ];
 
@@ -144,7 +145,7 @@ function anfänge() {
     drawFrame();
 
     echo "\033[38;5;241m";
-    drawBox(45, 8, 10, 25);
+    drawBox(45, 9, 10, 25);
     echo "\033[0m";
 
     $json = file_get_contents("save.json");
@@ -152,10 +153,11 @@ function anfänge() {
 
     echo "\033[12;27HAktueller Ort\033[35m:\033[0m {$daten["ort"]}";
     echo "\033[13;27HAktueller Raum\033[35m:\033[0m {$daten["raum"]}";
-    echo "\033[14;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[14:27HAktuelle Mission\033[35m:\033[0m {$daten["mission"]}";
     echo "\033[15;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
-    echo "\033[16;27HGeld\033[35m:\033[0m {$daten["geld"]}";
-
+    echo "\033[16;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[17;27HGeld\033[35m:\033[0m {$daten["geld"]}";
+    
 }
 
 function fortsetzen() {
@@ -168,7 +170,7 @@ function fortsetzen() {
     echo "\033[0m";
     
     if (!file_exists("save.json")) {
-        echo "\033[14;27HDatei existiert nicht!";
+        echo "\033[14;27H!!!Datei existiert nicht!!!";
         exit;
     }
 

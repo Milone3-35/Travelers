@@ -152,7 +152,6 @@ function drawAsciiArt(int $zeile, int $spalte, string $filePath): void {
 
     }
 }
-
 function drawFrame() {
         
     echo "\033[2J";
@@ -187,5 +186,29 @@ function drawFrame() {
     echo "───────────────────────────────────────────────────────────────";
     echo "───────────────────────────────────────────────────┘";
     
+}
+
+function wholeScreenAnimation() {
+
+    for ($i = 1; $i < 66; $i++) {
+
+        for ($j = 1; $j < 269; $j++) {
+
+            echo "\033[{$i};{$j}H\033[38;5;232m█";
+
+        }
+
+        usleep(500);
+
+    }
+
+    for ($i = 66; $i > 1; $i--) {
+
+        echo "\033[{$i};1H\033[0K";
+        usleep(500);
+
+    }
+
+    echo "\033[0m";
 }
 ?>

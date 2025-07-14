@@ -14,15 +14,19 @@ drawAsciiArt(0,0, "assets/rocket.ans");
 
 $startMenu = select("\033[31;119H\033[38;5;224mWas willst du tun:", $startAuswahl, 33, 117);
 
-//!!!!!! Zeile 33 ist mitte! also 33;119
+// ! Zeile 33 ist mitte! also 33;119
 
 switch ($startMenu) {
 
     case "Eine Reise beginnen":
+
+        wholeScreenAnimation();
         anfänge();
         break;
 
     case "Deine Reise fortsetzen":
+        
+        wholeScreenAnimation();
         fortsetzen();
         break;
 
