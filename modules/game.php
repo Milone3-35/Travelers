@@ -166,6 +166,11 @@ function fortsetzen() {
     echo "\033[38;5;241m";
     drawBox(45, 8, 10, 25);
     echo "\033[0m";
+    
+    if (!file_exists("save.json")) {
+        echo "\033[14;27HDatei existiert nicht!";
+        exit;
+    }
 
     $json = file_get_contents("save.json");
     $daten = json_decode($json, true); 

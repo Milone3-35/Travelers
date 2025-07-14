@@ -1,19 +1,19 @@
 # Travelers
 
-A terminal based game written mainly in PHP and C.
+Ein Terminal basiertes Spiel geschrieben in PHP und ein klitze kleines bisschen C.
 
 ## PHP
 
-As I said everything is written in PHP except a few things (see below).
+Alles ist in PHP geschrieben außer eine Sachen (siehe unten).
 
 ### C
 
-The on thing written in C is the function readKey because with PHP I had performance issues
-on Windows because there isn't really a way to read one single input like there is on Linux/Macos.
+Die eine Sache die in C geschrieben wurde ist die "readKey" Funktion da
+solch eine nicht nativ auf Windows existiert.
 
-## Operating System
+## Betriebssystem
 
-Right now the game is Windows only but in future it might also be on Linux/Mac.
+Derzeit ist das Spiel Windows only aber später wahrscheinlich auch auf anderen Plattformen.
 
 ## Language
 
