@@ -151,11 +151,11 @@ function anfänge() {
     $json = file_get_contents("save.json");
     $daten = json_decode($json, true); 
 
-    echo "\033[12;27HAktueller Ort\033[35m:\033[0m {$daten["ort"]}";
-    echo "\033[13;27HAktueller Raum\033[35m:\033[0m {$daten["raum"]}";
-    echo "\033[14:27HAktuelle Mission\033[35m:\033[0m {$daten["mission"]}";
-    echo "\033[15;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
-    echo "\033[16;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[12;27HOrt\033[35m:\033[0m {$daten["ort"]}";
+    echo "\033[13;27HRaum\033[35m:\033[0m {$daten["raum"]}";
+    echo "\033[14;27HMission\033[35m:\033[0m {$daten["mission"]}";
+    echo "\033[15;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[16;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
     echo "\033[17;27HGeld\033[35m:\033[0m {$daten["geld"]}";
     
 }
@@ -177,11 +177,12 @@ function fortsetzen() {
     $json = file_get_contents("save.json");
     $daten = json_decode($json, true); 
 
-    echo "\033[12;27HAktueller Ort\033[35m:\033[0m {$daten["ort"]}";
-    echo "\033[13;27HAktueller Raum\033[35m:\033[0m {$daten["raum"]}";
-    echo "\033[14;27HLevel\033[35m:\033[0m {$daten["level"]}";
-    echo "\033[15;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
-    echo "\033[16;27HGeld\033[35m:\033[0m {$daten["geld"]}";
+    echo "\033[12;27HOrt\033[35m:\033[0m {$daten["ort"]}";
+    echo "\033[13;27HRaum\033[35m:\033[0m {$daten["raum"]}";
+    echo "\033[14;27HMission\033[35m:\033[0m {$daten["mission"]}";
+    echo "\033[15;27HLevel\033[35m:\033[0m {$daten["level"]}";
+    echo "\033[16;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
+    echo "\033[17;27HGeld\033[35m:\033[0m {$daten["geld"]}";
     
 }
 
