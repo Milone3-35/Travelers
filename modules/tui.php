@@ -73,4 +73,7 @@ function select(string $prompt = "Was willst du tun?",array $options, int $reihe
 
 }
 
+function clearScreen() {
+    echo "\033[2J";
+}
 ?>

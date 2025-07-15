@@ -25,165 +25,171 @@ class Player {
 
 }
 
-function spielerErstellen() {
+class GameManager {
 
-    drawFrame();
-    drawCharakterErstellungTitel(); echo "\033[0m";
-    drawBox(100, 20,22,85);
-    
-    echo "\033[20;125HWie heißt du?";
-    echo "\033[21;125H\033[?25h";
-    
-    $name = readline();
-    echo "\033[?25l";
+    public function spielerErstellen() {
 
-        while (true) {
+        wholeScreenAnimation();
+        clearScreen();
+        drawFrame();
+        drawCharakterErstellungTitel(); echo "\033[0m";
+        drawBox(100, 20,22,85);
+        
+        echo "\033[20;125HWie heißt du?";
+        echo "\033[21;125H\033[?25h";
+        
+        $name = readline();
+        echo "\033[?25l";
 
-        $spielerArray = [];
+            while (true) {
 
-        $haarfarbeOptionen = ["Braun", "Blond", "Schwarz", "Grau", "Weiß"];
-        $haarfarbe = select("\033[24;88H[1] Haarfarbe", $haarfarbeOptionen, 26, 88);
-        $spielerArray["haarfarbe"] = $haarfarbe;
+            $spielerArray = [];
 
-        $rollenOptionen = ["Krieger", "Magier", "Dieb"];
-        $rolle = select("\033[24;104H[2] Rolle", $rollenOptionen,26 , 104);
-        $spielerArray["rolle"] = $rolle;
+            $haarfarbeOptionen = ["Braun", "Blond", "Schwarz", "Grau", "Weiß"];
+            $haarfarbe = select("\033[24;88H[1] Haarfarbe", $haarfarbeOptionen, 26, 88);
+            $spielerArray["haarfarbe"] = $haarfarbe;
 
-        $herkunftOptionen = ["Elfenwald", "Burg Landskorn", "Mine von Salzes", "Sumpf der Tiefländer"];
-        $herkunft = select("\033[24;116H[3] Herkunft", $herkunftOptionen, 26, 116);
-        $spielerArray["herkunft"] = $herkunft;
+            $rollenOptionen = ["Krieger", "Magier", "Dieb"];
+            $rolle = select("\033[24;104H[2] Rolle", $rollenOptionen,26 , 104);
+            $spielerArray["rolle"] = $rolle;
 
-        $waffenMapping = [
+            $herkunftOptionen = ["Elfenwald", "Burg Landskorn", "Mine von Salzes", "Sumpf der Tiefländer"];
+            $herkunft = select("\033[24;116H[3] Herkunft", $herkunftOptionen, 26, 116);
+            $spielerArray["herkunft"] = $herkunft;
 
-            "Krieger" => ["Kurzschwert", "Langschwert", "Bogen      ", "Armbrust   "],
-            "Magier" => ["Schnellstab","Großstab   ", "Buch       ", "Hände      "],
-            "Dieb" => ["Dolch      ","Wurfmesser ", "Axt        ", "Keule      "]
+            $waffenMapping = [
+
+                "Krieger" => ["Kurzschwert", "Langschwert", "Bogen      ", "Armbrust   "],
+                "Magier" => ["Schnellstab","Großstab   ", "Buch       ", "Hände      "],
+                "Dieb" => ["Dolch      ","Wurfmesser ", "Axt        ", "Keule      "]
+            ];
+
+            $waffenOptionen = $waffenMapping[$rolle] ?? [];
+            $waffe = select("\033[24;139H[4] Waffe", $waffenOptionen, 26, 139);
+            $spielerArray["waffe"] = $waffe;
+            
+            $bistDuDirSicherOptionen = ["Ja", "Nein"];
+            $bistDuDirSicher = select("\033[24;154H[5] Bist du dir Sicher?", $bistDuDirSicherOptionen, 26, 154);
+            
+            switch ($bistDuDirSicher) {
+
+                case "Ja":
+                    break 2;
+                
+                case "Nein":
+                    continue 2;
+            }
+
+        }
+        $hp = [
+
+            "Krieger" => 30,
+            "Magier" => 25,
+            "Dieb" => 20
+
         ];
 
-        $waffenOptionen = $waffenMapping[$rolle] ?? [];
-        $waffe = select("\033[24;139H[4] Waffe", $waffenOptionen, 26, 139);
-        $spielerArray["waffe"] = $waffe;
-        
-        $bistDuDirSicherOptionen = ["Ja", "Nein"];
-        $bistDuDirSicher = select("\033[24;154H[5] Bist du dir Sicher?", $bistDuDirSicherOptionen, 26, 154);
-        
-        switch ($bistDuDirSicher) {
+        $verteidigung = [
 
-            case "Ja":
-                break 2;
+            "Krieger" => 10,
+            "Magier" => 8,
+            "Dieb" => 5
+
+        ];
+
+        $stärke = [
+
+            "Krieger" => 5,
+            "Magier" => 7,
+            "Dieb" => 10
+
+        ];
+
+        $spieler = new Player(
+
+            $spielerArray["haarfarbe"],
+            $spielerArray["rolle"],
+            $spielerArray["herkunft"],
+            $name,
             
-            case "Nein":
-                continue 2;
+            $spielerArray["waffe"],
+            $hp[$rolle],
+            $verteidigung[$rolle],
+            $stärke[$rolle]
+
+        );
+
+        $daten = [
+
+            "haarfarbe" => $spieler->haarfarbe,
+            "rolle" => $spieler->rolle,
+            "herkunft" => $spieler->herkunft,
+            "name" => $spieler->name,
+
+            "waffe" => $spieler->waffe,
+            "leben" => $spieler->leben,
+            "verteidigung" => $spieler->verteidigung,
+            "stärke" => $spieler->stärke,
+
+            "raum" => "Schlafzimmer vom Spieler",
+            "ort" => "Haus vom Spieler",
+            "level" => 1,
+            "geld" => 100,
+            "mission" => "Geh ins Badezimmer"
+
+        ];
+
+        file_put_contents("save.json", json_encode($daten, JSON_PRETTY_PRINT));
+
+    }
+
+    public function anfänge() {
+
+        $this -> spielerErstellen();
+        echo "\033[2J";
+        drawFrame();
+
+        echo "\033[38;5;241m";
+        drawBox(45, 9, 10, 25);
+        echo "\033[0m";
+
+        $this -> saveGame();
+        
+    }
+
+    public function saveGame() {
+
+        if (!file_exists("save.json")) {
+
+            echo "\033[14;27H\033[38;5;196m!!!Datei existiert nicht!!!\033[0m";
+            exit(2);
+
         }
 
+        $json = file_get_contents("save.json");
+        $daten = json_decode($json, true); 
+
+        echo "\033[12;27HOrt\033[35m:\033[0m {$daten["ort"]}";
+        echo "\033[13;27HRaum\033[35m:\033[0m {$daten["raum"]}";
+        echo "\033[14;27HMission\033[35m:\033[0m {$daten["mission"]}";
+        echo "\033[15;27HLevel\033[35m:\033[0m {$daten["level"]}";
+        echo "\033[16;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
+        echo "\033[17;27HGeld\033[35m:\033[0m {$daten["geld"]}";
+
     }
-    $hp = [
 
-        "Krieger" => 30,
-        "Magier" => 25,
-        "Dieb" => 20
+    public function fortsetzen() {
 
-    ];
-
-    $verteidigung = [
-
-        "Krieger" => 10,
-        "Magier" => 8,
-        "Dieb" => 5
-
-    ];
-
-    $stärke = [
-
-        "Krieger" => 5,
-        "Magier" => 7,
-        "Dieb" => 10
-
-    ];
-
-    $spieler = new Player(
-
-        $spielerArray["haarfarbe"],
-        $spielerArray["rolle"],
-        $spielerArray["herkunft"],
-        $name,
+        wholeScreenAnimation();
+        echo "\033[2J";
+        drawFrame();
         
-        $spielerArray["waffe"],
-        $hp[$rolle],
-        $verteidigung[$rolle],
-        $stärke[$rolle]
+        echo "\033[38;5;241m";
+        drawBox(45, 8, 10, 25);
+        echo "\033[0m";
+        
+        $this -> saveGame();
 
-    );
-
-    $daten = [
-
-        "haarfarbe" => $spieler->haarfarbe,
-        "rolle" => $spieler->rolle,
-        "herkunft" => $spieler->herkunft,
-        "name" => $spieler->name,
-
-        "waffe" => $spieler->waffe,
-        "leben" => $spieler->leben,
-        "verteidigung" => $spieler->verteidigung,
-        "stärke" => $spieler->stärke,
-
-        "raum" => "Schlafzimmer vom Spieler",
-        "ort" => "Haus vom Spieler",
-        "level" => 1,
-        "geld" => 100,
-        "mission" => "Geh ins Badezimmer"
-
-    ];
-
-    file_put_contents("save.json", json_encode($daten, JSON_PRETTY_PRINT));
-
-}
-function anfänge() {
-
-    spielerErstellen();
-    echo "\033[2J";
-    drawFrame();
-
-    echo "\033[38;5;241m";
-    drawBox(45, 9, 10, 25);
-    echo "\033[0m";
-
-    $json = file_get_contents("save.json");
-    $daten = json_decode($json, true); 
-
-    echo "\033[12;27HOrt\033[35m:\033[0m {$daten["ort"]}";
-    echo "\033[13;27HRaum\033[35m:\033[0m {$daten["raum"]}";
-    echo "\033[14;27HMission\033[35m:\033[0m {$daten["mission"]}";
-    echo "\033[15;27HLevel\033[35m:\033[0m {$daten["level"]}";
-    echo "\033[16;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
-    echo "\033[17;27HGeld\033[35m:\033[0m {$daten["geld"]}";
-    
-}
-
-function fortsetzen() {
-
-    echo "\033[2J";
-    drawFrame();
-    
-    echo "\033[38;5;241m";
-    drawBox(45, 8, 10, 25);
-    echo "\033[0m";
-    
-    if (!file_exists("save.json")) {
-        echo "\033[14;27H!!!Datei existiert nicht!!!";
-        exit;
     }
-
-    $json = file_get_contents("save.json");
-    $daten = json_decode($json, true); 
-
-    echo "\033[12;27HOrt\033[35m:\033[0m {$daten["ort"]}";
-    echo "\033[13;27HRaum\033[35m:\033[0m {$daten["raum"]}";
-    echo "\033[14;27HMission\033[35m:\033[0m {$daten["mission"]}";
-    echo "\033[15;27HLevel\033[35m:\033[0m {$daten["level"]}";
-    echo "\033[16;27HWaffe\033[35m:\033[0m {$daten["waffe"]}";
-    echo "\033[17;27HGeld\033[35m:\033[0m {$daten["geld"]}";
-    
 }
-
 ?>

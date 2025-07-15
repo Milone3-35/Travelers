@@ -1,8 +1,8 @@
 <?php
 
-require "modules/game.php";
-require "modules/tui.php";
-require "modules/visuals.php";
+require_once "modules/game.php";
+require_once "modules/tui.php";
+require_once "modules/visuals.php";
 
 $startAuswahl = ["Eine Reise beginnen", "Deine Reise fortsetzen", "Eine Pause machen"];
 
@@ -15,19 +15,18 @@ drawAsciiArt(0,0, "assets/rocket.ans");
 $startMenu = select("\033[31;119H\033[38;5;224mWas willst du tun:", $startAuswahl, 33, 117);
 
 // ! Zeile 33 ist mitte! also 33;119
+$game = New GameManager();
 
 switch ($startMenu) {
 
     case "Eine Reise beginnen":
 
-        wholeScreenAnimation();
-        anfänge();
+        $game -> anfänge();
         break;
 
     case "Deine Reise fortsetzen":
         
-        wholeScreenAnimation();
-        fortsetzen();
+        $game -> fortsetzen();
         break;
 
     case "Eine Pause machen":
