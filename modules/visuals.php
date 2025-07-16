@@ -199,14 +199,14 @@ function wholeScreenAnimation() {
             
         }
 
-        usleep(10000);
+        usleep(500);
 
     }
 
     for ($i = 66; $i > 1; $i--) {
 
         echo "\033[{$i};1H\033[0K";
-        usleep(10000);
+        usleep(500);
 
     }
 
