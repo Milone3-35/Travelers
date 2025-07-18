@@ -27,13 +27,15 @@ class Player {
 
 class GameManager {
 
-    public function spielerErstellen() {
+    function spielerErstellen() {
 
         wholeScreenAnimation();
         clearScreen();
         drawFrame();
         drawCharakterErstellungTitel(); echo "\033[0m";
+        echo "\033[38;5;202m";
         drawBox(100, 20,22,85);
+        echo "\033[0m";
         
         echo "\033[20;125HWie heißt du?";
         echo "\033[21;125H\033[?25h";
@@ -143,18 +145,100 @@ class GameManager {
 
     }
 
+    function erste_Reise() {
+
+        echo "\033[38;5;202m";
+        drawBox(100, 20,22,85);
+
+        echo "\033[0m";
+        $erstes_Reise_prompt = "\033[26;88HAlso wo willst du als erstes hin?";
+        $erste_Reise_auswahl = ["Sümpfe Düsterwalds", "Berge Grolingens", "Weiden Tüfteltuns"];
+
+        $erste_Reise = select($erstes_Reise_prompt, $erste_Reise_auswahl, 28, 88);
+
+        switch ($erste_Reise) {
+
+        case "Sümpfe Düsterwalds":
+
+            echo "\033[32;88HUhh, da könnte es gefährlich werden, aber egal.";
+            break;
+            
+        case "Berge Grolingens":
+
+            echo "\033[32;88HDas wird sicher sehr entspannend ;).";
+            break;
+
+        case "Weiden Tüfteltuns":
+
+            echo "\033[32;88HDas nenne ich mal eine gute Wahl, dort ist es sehr schön!";
+            break;
+
+        }
+
+    }
     public function anfänge() {
 
         $this -> spielerErstellen();
         echo "\033[2J";
         drawFrame();
 
-        echo "\033[38;5;241m";
+        echo "\033[38;5;224m";
         drawBox(45, 9, 10, 25);
         echo "\033[0m";
 
+        echo "\033[38;5;202m";
+        drawBox(100, 20,22,85);
+        echo "\033[0m";
+
         $this -> saveGame();
+
+        $reise_beginnen_prompt = "\033[24;88H\033[38;5;224mHeute ist es so weit, du hast endlich genug Geld gesammelt\033[25;88Hum die Welt zu bereisen! Bist du bereit?";
+        $reise_beginnen_optionen = ["Ja!","Nein!"];
         
+        drawBox(100, 20, 22 , 85);
+        $reise_beginnen = select($reise_beginnen_prompt, $reise_beginnen_optionen, 27, 88);
+
+        switch ($reise_beginnen) {
+            
+            case "Ja!":
+                
+                for ($i = 24; $i <= 28 ; $i++) {
+                    
+                    echo "\033[$i;88H\033[0K";
+
+                }
+
+                drawFrame();
+                echo "\033[38;5;202m";
+                drawBox(100, 20, 22 , 85);
+
+                echo "\033[0m";
+                echo "\033[25;88HDann geht's los!";
+
+                sleep(1);
+                break;
+            
+            case "Nein":
+
+                for ($i = 24; $i <= 28 ; $i++) {
+                    
+                    echo "\033[$i;88H\033[0K";
+
+                }
+
+                drawFrame();
+                echo "\033[38;5;202m";
+                drawBox(100, 20, 22 , 85);
+
+                echo "\033[0m";
+                echo "\033[25;88HFalsche Antwort! Du gehst natürlich trotzdem!";
+    
+                sleep(1);
+                break;
+        }
+
+        $this -> erste_Reise();
+
     }
 
     public function saveGame() {
