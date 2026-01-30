@@ -1,0 +1,3 @@
+Rename the files in .config properly so it works right with the parser, that could happen with an installer
+wih that we could also move like all the files into the travlers folder in .config, a basic installer but yeah.
+Maybe also make it an array with keys to the filepath.
